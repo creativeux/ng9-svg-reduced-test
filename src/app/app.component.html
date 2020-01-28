@@ -1,20 +1,64 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    Old vs new svg binding syntax demo
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+  <!-- Does not work -->
+  <div>
+    <h2>This is the old way. It does not work as of Angular 9</h2>
+    <p>
+      Approach taken from <a href="https://stackoverflow.com/questions/42957204/angular-2-svg-pass-height-and-width-dynamically">this (old) StackOverflow example</a>
+    </p>
+    <ul>
+      <li>
+        The <code>svg</code> element receives default sizing instead of the supplied pixel values when using the <code>[attr.width.px]="var"</code> syntax.
+      </li>
+      <li>
+        The <code>circle</code> element does not get rendered due to supplying the radius using the <code>[attr.r.px]="r"</code> syntax.
+      </li>
+    </ul>
+    <svg
+      [attr.width.px]="width"
+      [attr.height.px]="height"
+    >
+      <rect width="100%" height="100%" fill="gray" />
+      <circle
+        cx="50%"
+        cy="50%"
+        [attr.r.px]="r"
+        stroke="green"
+        [style.stroke-width]="stroke"
+        fill="yellow"
+      />
+    </svg>
+  </div>
+
+
+  <!-- Does work -->
+  <div>
+    <h2>This is the new way.</h2>
+    <ul>
+      <li>
+        The <code>svg</code> element receives the supplied pixel values when using the <code>[attr.width]="var"</code> syntax.
+      </li>
+      <li>
+        The <code>circle</code> element gets rendered when supplying the radius using the <code>[attr.r]="r"</code> syntax.
+      </li>
+    </ul>
+    <svg
+      [attr.width]="width"
+      [attr.height]="height"
+    >
+      <rect width="100%" height="100%" fill="gray" />
+      <circle
+        cx="50%"
+        cy="50%"
+        [attr.r]="r"
+        stroke="green"
+        [style.stroke-width]="stroke"
+        fill="yellow"
+      />
+    </svg>
+  </div>
+</div>

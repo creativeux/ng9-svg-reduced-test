@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'svg-test';
+  width = 100;
+  height = 100;
+  r = 40;
+  stroke = 4;
 }
